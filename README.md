@@ -1,5 +1,9 @@
 # BobaTrackerAngular
 
+## Introduction
+
+The purpose of this project is to develop a front end for [Boba Tracker API](https://github.com/null-coder13/Boba-Tracker). This projects main goal is to provide a way to track when my dog was last let outside to do his business. Untimately this project will be displayed on a Raspberry Pi 4 using a 5 inch display. 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
 
 ## Development server

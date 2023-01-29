@@ -6,6 +6,9 @@ The purpose of this project is to develop a front end for [Boba Tracker API](htt
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
 
+## UI Design
+![design](images/design.png)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

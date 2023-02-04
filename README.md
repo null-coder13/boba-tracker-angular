@@ -9,6 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## UI Design
 
 The goal of the UI is to be as simple as possible by being able to submit an entry in at most three clicks.
+
 ![design](images/design.png)
 
 ## Development server

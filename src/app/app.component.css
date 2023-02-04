@@ -1,0 +1,13 @@
+.mat-chip-option {
+    height: 50px !important;
+    font-size: 50px;
+    padding: 15px;
+    justify-content: center;
+}
+
+.mat-chip-list-wrapper {
+        flex-direction: column;
+    align-items: flex-start;
+    margin: 4px;
+}
+

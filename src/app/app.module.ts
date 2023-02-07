@@ -6,6 +6,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatChipsModule } from '@angular/material/chips'
 import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
     declarations: [
@@ -17,6 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
         BrowserAnimationsModule,
         MatChipsModule,
         MatButtonModule,
+        MatToolbarModule,
+        HttpClientModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

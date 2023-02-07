@@ -1,15 +1,19 @@
-<div layout="row">
-    <div layout-align="center center" style="min-height: 500px">
-        <div style="display: flex; justify-content: center; margin-top: 50px">
-          <mat-chip-listbox multiple class="mat-chip-list-wrapper">
-            <mat-chip-option class="mat-chip-option">Pee</mat-chip-option>
-            <mat-chip-option class="mat-chip-option">Poo</mat-chip-option>
-          </mat-chip-listbox>
-        </div>
-          <br />
-          <br />
-        <div class="text-center">
-          <button mat-raised-button color="primary">Submit</button>
-        </div>
-    </div>
+<mat-toolbar color="primary">
+    <span>Last Pee: {{pee}} hours</span>
+    <span>Last Poop: {{poo}} hours</span>
+</mat-toolbar>
+<br />
+<br />
+<div layout="row" layout-align="center center" flex>
+  <div style="display: flex; justify-content: center; margin-top: 50px">
+    <mat-chip-listbox multiple class="mat-chip-list-wrapper">
+      <mat-chip-option class="mat-chip-option">Pee</mat-chip-option>
+      <mat-chip-option class="mat-chip-option">Poo</mat-chip-option>
+    </mat-chip-listbox>
+  </div>
+  <br />
+  <br />
+  <div class="text-center">
+    <button mat-raised-button class="btn-font" color="primary">Submit</button>
+  </div>
 </div>

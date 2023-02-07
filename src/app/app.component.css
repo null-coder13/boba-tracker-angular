@@ -11,3 +11,11 @@
     margin: 4px;
 }
 
+.max {
+    height: 100%;
+    background: red;
+}
+
+.btn-font {
+    font-size: 30px;
+}

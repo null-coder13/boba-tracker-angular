@@ -1,5 +1,5 @@
 import { Component, Injectable } from '@angular/core';
-import { ConfigServiceService, LastEntry } from "./config-service.service";
+import { ConfigService, LastEntry } from "./config-service";
 
 @Component({
     selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent {
     pee: boolean = false;
     poo: boolean = false;
 
-    constructor(private http: ConfigServiceService) {}
+    constructor(private http: ConfigService) {}
 
     ngOnInit() {
         this.http.getLastEntry().subscribe((data: LastEntry) => {

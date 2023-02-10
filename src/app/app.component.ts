@@ -9,17 +9,24 @@ import { ConfigService, LastEntry } from "./config-service";
 
 @Injectable()
 export class AppComponent {
-    // TODO: Calculate the number of hours since last time peed or pooed
-    pee: boolean = false;
-    poo: boolean = false;
+    pee: number = 0;
+    poo: number = 0;
 
     constructor(private http: ConfigService) {}
 
     ngOnInit() {
-        this.http.getLastEntry().subscribe((data: LastEntry) => {
-            this.pee = data.hasPeed;
-            this.poo = data.hasPooped;
+        this.http.getLastPee().subscribe((data: Date) => {
+            this.pee = this.differenceInHours(new Date(data));
         })
 
+
+        this.http.getLastPoo().subscribe((data: Date) => {
+            this.poo = this.differenceInHours(new Date(data));
+        })
+    }
+
+    differenceInHours(date: Date) {
+        const today = new Date();
+        return Math.floor(Math.abs(today.valueOf() - date.valueOf()) / 36e5);
     }
 }

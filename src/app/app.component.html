@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
-    <p>Pee: {{pee}} hrs</p>
-    <p>| Poop: {{poo}} hrs</p>
+    <p>Pee: <span [ngClass] = "pee < 4 ? '' : 'danger'">{{pee}} hrs</span></p>
+    <p>| Poop: <span [ngClass] = "poo < 4 ? '' : 'danger'">{{poo}} hrs</span></p>
 </mat-toolbar>
 <br />
 <br />

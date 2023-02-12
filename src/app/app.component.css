@@ -23,3 +23,8 @@
 p {
     padding-left: 10px;
 }
+
+.danger {
+    color: red;
+}
+

@@ -23,10 +23,19 @@ export class ConfigService {
     getLastPoo() {
         return this.http.get<Date>(this.url + "GetLastPoo");
     }
+
+    addEntry(hasPeed: boolean, hasPooped: boolean) {
+        return this.http.post<LastEntry>(`${this.url}AddEntry?hasPooped=${hasPooped}&hasPeed=${hasPeed}`, null);
+    }
 }
 
 export interface LastEntry {
     dateTime: Date,
+    hasPooped: boolean,
+    hasPeed: boolean
+}
+
+export interface Entry {
     hasPooped: boolean,
     hasPeed: boolean
 }

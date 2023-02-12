@@ -1,19 +1,19 @@
 <mat-toolbar color="primary">
-    <span>Last Pee: {{pee}} hrs    </span>
-    <span>Last Poop: {{poo}} hrs</span>
+    <p>Pee: {{pee}} hrs</p>
+    <p>| Poop: {{poo}} hrs</p>
 </mat-toolbar>
 <br />
 <br />
 <div layout="row" layout-align="center center" flex>
   <div style="display: flex; justify-content: center; margin-top: 50px">
     <mat-chip-listbox multiple class="mat-chip-list-wrapper">
-      <mat-chip-option class="mat-chip-option">Pee</mat-chip-option>
-      <mat-chip-option class="mat-chip-option">Poo</mat-chip-option>
+      <mat-chip-option class="mat-chip-option" (click)="hasPeed = !hasPeed">Pee</mat-chip-option>
+      <mat-chip-option class="mat-chip-option" (click)="hasPooped = !hasPooped">Poo</mat-chip-option>
     </mat-chip-listbox>
   </div>
   <br />
   <br />
   <div class="text-center">
-    <button mat-raised-button class="btn-font" color="primary">Submit</button>
+    <button mat-raised-button class="btn-font" color="primary" (click)="submitEntry()">Submit</button>
   </div>
 </div>

@@ -7,10 +7,15 @@ import { MatChipsModule } from '@angular/material/chips'
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ErrorSnackBarComponent } from './error-snack-bar/error-snack-bar.component';
+import { SuccessSnackBarComponent } from './success-snack-bar/success-snack-bar.component';
 
 @NgModule({
     declarations: [
         AppComponent,
+        ErrorSnackBarComponent,
+        SuccessSnackBarComponent,
     ],
     imports: [
         BrowserModule,
@@ -18,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http'
         MatChipsModule,
         MatButtonModule,
         MatToolbarModule,
+        MatSnackBarModule,
         HttpClientModule,
     ],
     providers: [],

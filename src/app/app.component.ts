@@ -1,5 +1,8 @@
 import { Component, Injectable } from '@angular/core';
 import { ConfigService, LastEntry } from "./config-service";
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { ErrorSnackBarComponent } from './error-snack-bar/error-snack-bar.component';
+import { SuccessSnackBarComponent } from './success-snack-bar/success-snack-bar.component';
 
 @Component({
     selector: 'app-root',
@@ -16,7 +19,7 @@ export class AppComponent {
     peeTime: Date;
     pooTime: Date;
 
-    constructor(private http: ConfigService) {}
+    constructor(private http: ConfigService, private _snackBar: MatSnackBar) { }
 
     ngOnInit() {
         this.http.getLastPee().subscribe((data: Date) => {
@@ -44,13 +47,17 @@ export class AppComponent {
                 this.pee = 0;
                 this.peeTime = dateTime;
             }
-            
+
             if (data.hasPooped) {
                 this.poo = 0;
                 this.pooTime = dateTime;
             }
+            this._snackBar.openFromComponent(SuccessSnackBarComponent, { duration: 2500, panelClass: 'center' });
             // start countdown to update pee and poo
+        }, (error) => {
+            this._snackBar.openFromComponent(ErrorSnackBarComponent, { duration: 2500, panelClass: 'center' });
         });
+
     }
 
 

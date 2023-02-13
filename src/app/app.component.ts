@@ -1,10 +1,11 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { ConfigService, LastEntry } from "./config-service";
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { ErrorSnackBarComponent } from './error-snack-bar/error-snack-bar.component';
 import { SuccessSnackBarComponent } from './success-snack-bar/success-snack-bar.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { interval } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -13,7 +14,7 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 })
 
 @Injectable()
-export class AppComponent {
+export class AppComponent implements OnInit {
     pee: number = 0;
     poo: number = 0;
     hasPeed: boolean = false;
@@ -35,6 +36,12 @@ export class AppComponent {
             this.poo = this.differenceInHours(dateTime);
             this.pooTime = dateTime;
         })
+
+        // Execute every hour to update navbar data
+        interval(1000*60*60).subscribe(() => {
+            this.poo = this.differenceInHours(this.pooTime);
+            this.pee = this.differenceInHours(this.peeTime);
+        });
     }
 
     differenceInHours(date: Date) {

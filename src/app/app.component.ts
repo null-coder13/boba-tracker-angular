@@ -3,6 +3,8 @@ import { ConfigService, LastEntry } from "./config-service";
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { ErrorSnackBarComponent } from './error-snack-bar/error-snack-bar.component';
 import { SuccessSnackBarComponent } from './success-snack-bar/success-snack-bar.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @Component({
     selector: 'app-root',
@@ -19,7 +21,7 @@ export class AppComponent {
     peeTime: Date;
     pooTime: Date;
 
-    constructor(private http: ConfigService, private _snackBar: MatSnackBar) { }
+    constructor(private http: ConfigService, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
 
     ngOnInit() {
         this.http.getLastPee().subscribe((data: Date) => {
@@ -46,11 +48,15 @@ export class AppComponent {
             if (data.hasPeed) {
                 this.pee = 0;
                 this.peeTime = dateTime;
+                // Reset chip
+                this.hasPeed = false;
             }
 
             if (data.hasPooped) {
                 this.poo = 0;
                 this.pooTime = dateTime;
+                // Reset chip
+                this.hasPooped = false;
             }
             this._snackBar.openFromComponent(SuccessSnackBarComponent, { duration: 2500, panelClass: 'center' });
             // start countdown to update pee and poo
@@ -60,5 +66,8 @@ export class AppComponent {
 
     }
 
+    deleteLastEntry() {
+        this.dialog.open(DeleteDialogComponent, { width: '250px' });
+    }
 
 }

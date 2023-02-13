@@ -28,6 +28,10 @@ export class ConfigService {
         return this.http.post<LastEntry>(`${this.url}AddEntry?hasPooped=${hasPooped}&hasPeed=${hasPeed}`, null).pipe(catchError(this.handleError));
     }
 
+    deleteLastEntry() {
+        return this.http.delete<boolean>(`${this.url}DeleteLastEntry`).pipe(catchError(this.handleError));
+    }
+
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {
             // A client-side or network error occurred. Handle it accordingly.

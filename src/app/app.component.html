@@ -1,14 +1,16 @@
 <mat-toolbar color="primary">
     <p>Pee: <span [ngClass] = "pee < 4 ? '' : 'danger'">{{pee}} hrs</span></p>
     <p>| Poop: <span [ngClass] = "poo < 4 ? '' : 'danger'">{{poo}} hrs</span></p>
+    <span class="spacer"></span>
+    <button mat-raised-button color="warn" (click)="deleteLastEntry()">Undo</button>
 </mat-toolbar>
 <br />
 <br />
 <div layout="row" layout-align="center center" flex>
   <div style="display: flex; justify-content: center; margin-top: 50px">
     <mat-chip-listbox multiple class="mat-chip-list-wrapper">
-      <mat-chip-option class="mat-chip-option" (click)="hasPeed = !hasPeed">Pee</mat-chip-option>
-      <mat-chip-option class="mat-chip-option" (click)="hasPooped = !hasPooped">Poo</mat-chip-option>
+      <mat-chip-option class="mat-chip-option" (click)="hasPeed = !hasPeed" [selected]="hasPeed">Pee</mat-chip-option>
+      <mat-chip-option class="mat-chip-option" (click)="hasPooped = !hasPooped" [selected]="hasPooped">Poo</mat-chip-option>
     </mat-chip-listbox>
   </div>
   <br />

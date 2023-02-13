@@ -1,6 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { ConfigService, LastEntry } from "./config-service";
-import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorSnackBarComponent } from './error-snack-bar/error-snack-bar.component';
 import { SuccessSnackBarComponent } from './success-snack-bar/success-snack-bar.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
             }
             this._snackBar.openFromComponent(SuccessSnackBarComponent, { duration: 2500, panelClass: 'center' });
             // start countdown to update pee and poo
-        }, (error) => {
+        }, () => {
             this._snackBar.openFromComponent(ErrorSnackBarComponent, { duration: 2500, panelClass: 'center' });
         });
 
@@ -75,6 +75,14 @@ export class AppComponent implements OnInit {
 
     deleteLastEntry() {
         this.dialog.open(DeleteDialogComponent, { width: '250px' });
+    }
+
+    viewPeeTime() {
+        this._snackBar.open("Peed at: " + this.peeTime.toLocaleString('en-US'), "", { duration: 4000, panelClass: 'center' });
+    }
+
+    viewPooTime() {
+        this._snackBar.open("Pooped at: " + this.pooTime.toLocaleString('en-US'), "", { duration: 4000, panelClass: 'center' });
     }
 
 }

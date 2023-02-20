@@ -21,21 +21,12 @@ export class AppComponent implements OnInit {
     hasPooped: boolean = false;
     peeTime: Date;
     pooTime: Date;
+    loading: boolean = false;
 
     constructor(private http: ConfigService, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
 
     ngOnInit() {
-        this.http.getLastPee().subscribe((data: string) => {
-            const dateTime = new Date(data + 'Z');
-            this.pee = this.differenceInHours(dateTime);
-            this.peeTime = dateTime;
-        })
-
-        this.http.getLastPoo().subscribe((data: string) => {
-            const dateTime = new Date(data + 'Z');
-            this.poo = this.differenceInHours(dateTime);
-            this.pooTime = dateTime;
-        })
+        this.getLastPeeAndPoo();
 
         // Execute every hour to update navbar data
         interval(1000*60*60).subscribe(() => {
@@ -44,16 +35,33 @@ export class AppComponent implements OnInit {
         });
     }
 
+    getLastPeeAndPoo() {
+        this.http.getLastPee().subscribe((data: string) => {
+            const dateTime = new Date(data + 'Z');
+            this.pee = this.differenceInHours(dateTime);
+            this.peeTime = dateTime;
+        });
+
+        this.http.getLastPoo().subscribe((data: string) => {
+            const dateTime = new Date(data + 'Z');
+            this.poo = this.differenceInHours(dateTime);
+            this.pooTime = dateTime;
+        });
+
+    }
+
     differenceInHours(date: Date) {
         const today = new Date();
         return Math.floor(Math.abs(today.valueOf() - date.valueOf()) / 36e5);
     }
 
     submitEntry() {
+        if (!this.hasPeed && !this.hasPooped) {
+            return;
+        }
+        this.loading = true;
         this.http.addEntry(this.hasPeed, this.hasPooped).subscribe((data: LastEntry) => {
 
-            console.log(data);
-            
             const dateTime = new Date();
 
             if (data.hasPeed) {
@@ -74,10 +82,12 @@ export class AppComponent implements OnInit {
             this._snackBar.openFromComponent(ErrorSnackBarComponent, { duration: 2500, panelClass: 'center' });
         });
 
+        this.loading = false;
     }
 
     deleteLastEntry() {
         this.dialog.open(DeleteDialogComponent, { width: '250px' });
+        this.getLastPeeAndPoo();
     }
 
     viewPeeTime() {

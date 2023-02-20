@@ -16,6 +16,6 @@
   <br />
   <br />
   <div class="text-center">
-    <button mat-raised-button class="btn-font" color="primary" (click)="submitEntry()">Submit</button>
+    <button mat-raised-button [class.spinner]="loading" class="btn-font" color="primary" [disabled]="loading" (click)="submitEntry()">Submit</button>
   </div>
 </div>

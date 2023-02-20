@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
-    <p (click)="viewPeeTime()">Pee: <span [ngClass] = "pee < 4 ? '' : 'danger'">{{pee}} hrs</span></p>
-    <p (click)="viewPooTime()">| Poop: <span [ngClass] = "poo < 4 ? '' : 'danger'">{{poo}} hrs</span></p>
+    <p (click)="viewPeeTime()">Pee: <span [ngClass] = "pee < 4 ? 'ok' : 'danger'">{{pee}} hr(s)</span></p>
+    <p (click)="viewPooTime()">| Poop: <span [ngClass] = "poo < 4 ? 'ok' : 'danger'">{{poo}} hr(s)</span></p>
     <span class="spacer"></span>
     <button mat-raised-button color="warn" (click)="deleteLastEntry()">Undo</button>
 </mat-toolbar>

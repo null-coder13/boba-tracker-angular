@@ -12,6 +12,16 @@ The goal of the UI is to be as simple as possible by being able to submit an ent
 
 ![design](images/design.png)
 
+## Deployment
+Deploy the application to a Raspberry Pi 4 with the following steps.
+
+1. Build the angular application with `ng build`.
+2. Install Node.js on the Raspberry Pi.
+3. Install http-server with npm `sudo npm i -g http-server`.
+4. Transfer build files or clone this repo to the Raspberry pi (note you will need to repeat step 1 if you clone).
+5. Serve the build files with http-server `http-server <path to build files>`.
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

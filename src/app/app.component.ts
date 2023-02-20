@@ -25,14 +25,14 @@ export class AppComponent implements OnInit {
     constructor(private http: ConfigService, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
 
     ngOnInit() {
-        this.http.getLastPee().subscribe((data: Date) => {
-            const dateTime = new Date(data);
+        this.http.getLastPee().subscribe((data: string) => {
+            const dateTime = new Date(data + 'Z');
             this.pee = this.differenceInHours(dateTime);
             this.peeTime = dateTime;
         })
 
-        this.http.getLastPoo().subscribe((data: Date) => {
-            const dateTime = new Date(data);
+        this.http.getLastPoo().subscribe((data: string) => {
+            const dateTime = new Date(data + 'Z');
             this.poo = this.differenceInHours(dateTime);
             this.pooTime = dateTime;
         })
@@ -51,7 +51,11 @@ export class AppComponent implements OnInit {
 
     submitEntry() {
         this.http.addEntry(this.hasPeed, this.hasPooped).subscribe((data: LastEntry) => {
-            const dateTime = new Date(data.dateTime);
+
+            console.log(data);
+            
+            const dateTime = new Date();
+
             if (data.hasPeed) {
                 this.pee = 0;
                 this.peeTime = dateTime;
@@ -66,7 +70,6 @@ export class AppComponent implements OnInit {
                 this.hasPooped = false;
             }
             this._snackBar.openFromComponent(SuccessSnackBarComponent, { duration: 2500, panelClass: 'center' });
-            // start countdown to update pee and poo
         }, () => {
             this._snackBar.openFromComponent(ErrorSnackBarComponent, { duration: 2500, panelClass: 'center' });
         });

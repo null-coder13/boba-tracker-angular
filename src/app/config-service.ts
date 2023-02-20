@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class ConfigService {
-    url: string = 'https://localhost:5001/api/Entry/';
+    url: string = 'https://epmx4jtaag.execute-api.us-east-1.amazonaws.com/api/Entry/';
 
     constructor(private http: HttpClient) { }
 
@@ -17,11 +17,11 @@ export class ConfigService {
     }
 
     getLastPee() {
-        return this.http.get<Date>(this.url + "GetLastPee").pipe(catchError(this.handleError));
+        return this.http.get<string>(this.url + "GetLastPee").pipe(catchError(this.handleError));
     }
 
     getLastPoo() {
-        return this.http.get<Date>(this.url + "GetLastPoo").pipe(catchError(this.handleError));
+        return this.http.get<string>(this.url + "GetLastPoo").pipe(catchError(this.handleError));
     }
 
     addEntry(hasPeed: boolean, hasPooped: boolean) {
@@ -43,13 +43,13 @@ export class ConfigService {
                 `Backend returned code ${error.status}, body was: `, error.error);
         }
         // Return an observable with a user-facing error message.
-        return throwError(() => new Error('Error submitting entry.'));
+        return throwError(() => new Error('Error contacting server.'));
     }
 }
 
 
 export interface LastEntry {
-    dateTime: Date,
+    dateTimeId: string,
     hasPooped: boolean,
     hasPeed: boolean
 }

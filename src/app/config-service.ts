@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class ConfigService {
-    url: string = 'https://epmx4jtaag.execute-api.us-east-1.amazonaws.com/api/Entry/';
+    url: string = 'https://localhost:5001/api/Entry/';
 
     constructor(private http: HttpClient) { }
 
